@@ -20,7 +20,15 @@
 <body></body>
 <script>
   /* create timeline */
+
+  var url="https://script.google.com/macros/s/AKfycbzKFzoC2cehNQiFk-o7FeU7H455yqjfnNx1xDghd1Ln_zWTgB_cZ_55QIrkcLOIehCZ/exec"
+  /* create timeline */
   var timeline = [];
+var jsPsych = initJsPsych({
+  on_finish: function () {
+    jsPsychSheet.upload(url,jsPsych.data.get().csv());
+      }
+    });
 
   /* define welcome message trial */
   var welcome = {
@@ -105,16 +113,9 @@
     }
   };
   timeline.push(debrief_block);
-
+  jsPsych.run(timeline);
   /* start the experiment */
-  jsPsych.init({
-    timeline: timeline,
-    show_progress_bar: true,
-    on_finish: function () {
-      url = "https://script.google.com/macros/s/AKfycbzKFzoC2cehNQiFk-o7FeU7H455yqjfnNx1xDghd1Ln_zWTgB_cZ_55QIrkcLOIehCZ/exec";
-      jsPsychSheet.uploadData(url, jsPsych.data.get().csv())
-    }
-  });
+  
 </script>
 
 </html>
